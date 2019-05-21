@@ -3,47 +3,18 @@
 {% block title %}Hello BlogController!{% endblock %}
 
 {% block body %}
+
     <section class="articles">
-        <article>
-            <h2>Titre de l'article</h2>
-            <div class="metadata">Ecrit le 10/05/2018 à 19:00 dans la catégorie Politique</div>
-            <div class="content"><img src="http://placehold.it/350px150" alt="">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque debitis eligendi ipsum molestias nemo
-                    obcaecati odio. Asperiores corporis ea et, fugiat officia pariatur? Alias at fugiat nemo ut
-                    voluptate voluptatum!</p>
 
-                <p>Animi architecto atque aut culpa cupiditate ducimus earum ipsam itaque iure iusto libero mollitia
-                    nesciunt non quam, quo quod voluptates? Aliquid aspernatur et eum explicabo necessitatibus quidem
-                    repudiandae velit voluptate?</p>
-                <a href="{{ path('blog_show') }}" class="btn btn-primary">Lire la suite</a></div>
-        </article>
+        {% for article in articles %}
+            <article>
+                <h2>{{ article.title }}</h2>
+                <div class="metadata">Ecrit le {{ article.createdAt | date ('d/m/Y') }} à {{ article.createdAt | date('H:i') }} dans la catégorie Politique</div>
+                <div class="content"><img src="{{ article.image }}" alt="">
+                    {{ article.content | raw }}
+                    <a href="{{ path('blog_show',{'id': article.id}) }}" class="btn btn-primary">Lire la suite</a></div>
+            </article>
+        {% endfor %}
 
-        <article>
-            <h2>Titre de l'article</h2>
-            <div class="metadata">Ecrit le 10/05/2018 à 19:00 dans la catégorie Politique</div>
-            <div class="content"><img src="http://placehold.it/350px150" alt="">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci debitis eaque enim nemo neque
-                    nobis placeat qui. Beatae ducimus eos eum mollitia non numquam quibusdam, quidem similique sit totam
-                    veritatis.</p>
-
-                <p>Alias aliquid architecto culpa distinctio dolores eaque eligendi, exercitationem ipsum itaque laborum
-                    molestiae nam obcaecati omnis optio quibusdam quidem recusandae reprehenderit rerum sequi soluta,
-                    ullam unde vel veniam voluptatem voluptates!</p>
-                <a href="{{ path('blog_show') }}" class="btn btn-primary">Lire la suite</a></div>
-        </article>
-
-        <article>
-            <h2>Titre de l'article</h2>
-            <div class="metadata">Ecrit le 10/05/2018 à 19:00 dans la catégorie Politique</div>
-            <div class="content"><img src="http://placehold.it/350px150" alt="">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda consequuntur dolor
-                    dolores eligendi hic impedit in ipsam molestiae, obcaecati praesentium provident quae quia quod ut
-                    velit vitae voluptas voluptates!</p>
-
-                <p>Aliquid autem earum, enim esse magni obcaecati. Beatae dolores et itaque libero nemo rem soluta sunt
-                    ullam. Aliquid, aperiam beatae dicta eius exercitationem hic, incidunt libero minus perferendis
-                    soluta voluptates.</p>
-                <a href="{{ path('blog_show') }}" class="btn btn-primary">Lire la suite</a></div>
-        </article>
     </section>
 {% endblock %}
